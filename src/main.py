@@ -44,11 +44,11 @@ def main():
         ax.plot(10,5,5,'k-', linewidth=1)
 
 
-    ax.plot3D(cords[0], cords[1], cords[2], 'blue')
+    ax.plot3D(cords[0], cords[1], cords[2], 'red')
     ax.scatter3D(cords[0], cords[1], cords[2],  c=cords[2], cmap = 'cividis', s=200)
 
     ax.plot3D(party_cords[0], party_cords[1], party_cords[2], 'red')
-    ax.scatter3D(party_cords[0], party_cords[1], party_cords[2],  c=party_cords[2], cmap = 'cividis', s=200)
+    ax.scatter3D(party_cords[0], party_cords[1], party_cords[2],  c='red', cmap = 'cividis', s=200)
 
     plt.show()
 
