@@ -1,3 +1,4 @@
+#!/bin/python3
 import numpy as np
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 from mpl_toolkits.mplot3d import proj3d
@@ -25,11 +26,27 @@ def main():
     ax.set_ylim(0, 10)
     ax.set_zlim(0, 10)
 
-    ax.plot3D(cords[0], cords[1], cords[2], 'blue')
-    ax.scatter3D(cords[0], cords[1], cords[2],  c=cords[2], cmap = 'cividis')
 
-    ax.plot3D(party_cords[0], party_cords[1], party_cords[2], 'blue')
-    ax.scatter3D(party_cords[0], party_cords[1], party_cords[2],  c=party_cords[2], cmap = 'cividis')
+    val = [10,0,0]
+    labels = ['Y: A/L', 'X: Economic', 'Z: Social']
+    colours = ['black', 'black', 'black']
+
+
+    for v in range(3):
+        x = [val[v-0], -val[v-0]]
+        y = [val[v-1], -val[v-1]]
+        z = [val[v-2], -val[v-2]]
+        ax.plot(x,y,z,'k-', linewidth=1)
+        ax.text(val[v-0], val[v-1], val[v-2], labels[v], color=colours[v], fontsize=15)
+
+        ax.plot(10,5,5,'k-', linewidth=1)
+
+
+    ax.plot3D(cords[0], cords[1], cords[2], 'blue')
+    ax.scatter3D(cords[0], cords[1], cords[2],  c=cords[2], cmap = 'cividis', s=200)
+
+    ax.plot3D(party_cords[0], party_cords[1], party_cords[2], 'red')
+    ax.scatter3D(party_cords[0], party_cords[1], party_cords[2],  c=party_cords[2], cmap = 'cividis', s=200)
 
     plt.show()
 
