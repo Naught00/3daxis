@@ -6,6 +6,7 @@ from mpl_toolkits.mplot3d import proj3d
 
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
+first = True
 
 def main():
     plt.rcParams['toolbar'] = 'None'
@@ -18,9 +19,10 @@ def main():
 
     ax = plt.axes(projection ='3d')
 
-    cords = get_cords()
+    cords = get_cords(isparty=False)
 
-    party_cords = get_party_cords()
+    party_cords = get_cords(isparty=True)
+
 
     ax.set_xlim(0, 10)
     ax.set_ylim(0, 10)
@@ -59,26 +61,31 @@ def plot(cords):
     ax.scatter3D(x, y, z, c=z, cmap = 'cividis')
     plt.show()
     
-def get_cords():
-    x = input("Economic (X):")
-    y = input("AL (Y):")
-    z = input("Social (Z):")
+def get_cords(isparty):
+   
+    global first
+    if first:
+        print("Enter value between 1 and 10")
+    if isparty:
+        x = input("Party Economic (X):")
+        y = input("Party AL (Y):")
+        z = input("Party Social (Z):")
+    else:
+        x = input("Economic (X):")
+        y = input("AL (Y):")
+        z = input("Social (Z):")
 
+    first = False
     x = int(x)
     y = int(y)
     z = int(z)
 
-    return [x, y, z]
-
-def get_party_cords():
-    x = input("Party Economic (X):")
-    y = input("Party AL (Y):")
-    z = input("Party Social (Z):")
-
-    x = int(x)
-    y = int(y)
-    z = int(z)
-
+    if x > 10 or y > 10 or z > 10:
+        print("Values must be below 10!")
+        exit(-1)
+    if x < 1 or y < 1 or z < 1:
+        print("Values must be greater than 0!")
+        exit(-1)
     return [x, y, z]
 
 main()
